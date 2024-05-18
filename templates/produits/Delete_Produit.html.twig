@@ -1,0 +1,62 @@
+{# ***************************************** FICHIER PARENT ******************************* #}
+
+{% extends 'backOffice.html.twig' %}
+
+{# ***************************************** TITLE **************************************** #}
+
+{% block title %}Produit{% endblock %}
+
+{# ***************************************** NAV ET MENU ********************************** #}
+
+{% block menu %}
+	{% include 'produits/Gestion_Produits.html.twig' %}
+{% endblock %}
+
+{# ***************************************** BODY ***************************************** #}
+
+{% block body %}
+{# --------------------------------------POPUP DELETE ------------------------------ #}
+
+	<div id='container_form ' class='ma-classe'>
+		{# Pop Up formulaire supprimer #}
+		<div class='popupCatégorie'>
+			<div class='popUP_Create Delete-mode '>
+				<div class='col-lg-3 Create Delete-mode '>
+					{# Icon Supprimer #}
+					<i class="fa-solid fa-trash-can fa-3x changeColor mb-1"></i>
+				</div>
+
+				<div
+					class='d-flex align-items-center'>
+					{# titre #}
+					<h4>DELETE PRODUIT</h4>
+				</div>
+			</div>
+
+			<div class="main_delete">
+				<p>Suppression du produit
+					<span class='text_color_Delete'>{{ produit.prlibelle}}</span>
+				</p>
+			</div>
+
+			<div class='SubmitRecettes'>
+				<a class="m-2 btn  myBoutton affichePopUp" href={{url('Gestion_Produits')}}>Retour</a>
+				<a class="btn myBouttonSubmit_Delete m-2" href={{url('delete_Produit', {'id': produit.id} )}}>Supprimer</a>
+			</div>
+		</div>
+	</div>
+
+{# ***************************************** JAVASCRIPT ***************************************** #}
+
+<script>
+	// Désactive le scroll quand la popUp et affiché
+	window.onload = function () {
+	var element = document.querySelector('.ma-classe');
+	if (element) {
+	document.body.classList.add('scroll-desactive');
+	$('.voile').toggle();
+	}
+	};
+</script>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{# ***************************************** FICHIER PARENT ******************************* #}
+
+{% extends 'backOffice.html.twig' %}
+
+{# ***************************************** TITLE **************************************** #}
+
+{% block title %}Regions{% endblock %}
+
+{# ***************************************** NAV ET MENU ********************************** #}
+
+{% block menu %}
+	{% include 'regions/Gestion_Regions.html.twig' %}
+{% endblock %}
+
+{# ***************************************** BODY ***************************************** #}
+
+{% block body %}
+{# --------------------------------------POPUP UPDATE ------------------------------ #}
+<div id='container_form ' class='ma-classe'>
+	{# Pop Up formulaire update #}
+	<form method="post" enctype="multipart/form-data" class='popupCatégorie'>
+		<div class='popUP_Create Edit-mode'>
+			<div class='col-lg-3 Create Edit-mode'>
+				{# Icon update #}
+                <i class="fa-solid fa-pen-to-square fa-4x changeColor"></i>
+			</div>
+
+			<div class='d-flex align-items-center'>
+				{# titre update #}
+				<h4>UPDATE REGION</h4>
+			</div>
+        </div>
+
+        <div class='row m-0 justify-content-center mt-3 '>
+            <div class='col-lg-8 p-0' >
+                <div class='col-lg-6'>
+                    {# Label et input #}
+                    <label for="{{ form.reg_libelle.vars.id }}" class="form-contro">Titre de la région</label>
+                    {{ form_widget(form.reg_libelle, {'attr': {'class': 'form-control form-control'}}) }}
+                </div>
+            </div>
+        </div>
+
+        <div class='SubmitRecettes'>
+            {# bouton retour pour sortir de la popUp #}
+            <a class="m-2 btn myBoutton affichePopUp" href={{url('Gestion_Regions')}}>Retour</a>
+            {# Boutton Submit #}
+            {{ form_widget(form.submit , {'attr': {'class': 'btn  myBouttonSubmit_Edit m-2'}}) }}
+        </div>
+
+        {{ form_rest(form) }}
+    </form>
+</div>
+
+{# ***************************************** JAVASCRIPT ***************************************** #}
+
+<script>
+    // Désactive le scroll quand la popUp et affiché
+    window.onload = function () {
+    var element = document.querySelector('.ma-classe');
+    if (element) {
+    document.body.classList.add('scroll-desactive');
+    $('.voile').toggle();
+    }
+    };
+</script>
+{% endblock %}
+
+
+

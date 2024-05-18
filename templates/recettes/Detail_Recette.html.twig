@@ -1,0 +1,157 @@
+{# ***************************************** FICHIER PARENT ******************************* #}
+
+{% extends 'base.html.twig' %}
+
+{# ***************************************** TITLE **************************************** #}
+
+{% block title %}Détails de la recette{% endblock %}
+
+{# ***************************************** BODY ***************************************** #}
+
+{% block body %}
+
+<main class='Main_Detail ma_classe'>
+    <section class='Container_detail'>
+        <div>
+            <h3 class='Titre_DT_Recette'>MiamMalin</h3>
+        </div> 
+
+        <div class='img_detail' style='background-image: url({{ asset('recettes_images/' ~ recette.reimage|url_encode)  }})'>
+            <div class='Container_Titre_Recette'>
+                {# {% for etape in recette.getEtapes %}
+                    {% for quantite in etape.getQuantites %}
+                        {% for produit in quantite.getProduits %}
+                <p class='Tag_detail'>{{produit.categorie.calibelle}}</p>
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %} #}
+                {% for tag in recette.getRecetteTags %}
+                <p class='Tag_detail'>{{tag.talibelle}}</p>
+                {% endfor %}
+                <h7 class='Titre_Recette'>{{recette.relibelle}}</h7>    
+            </div>
+        </div>
+    </section>
+
+    <section class='Container_detail_2'>
+        <div class='time_NB_Kcal'>
+            <i class="fa-regular fa-user recette_i fa-2x"></i>
+            <p class='text'>{{ recette.renbpersonnes }} /PERS</p>
+        </div>
+        <div class='time_NB_Kcal'>
+            <i class="fa-regular fa-clock recette_i fa-2x"></i>
+            <p class='text'>{{ recette.retemps }} MIN</p>
+        </div>
+        <div class='time_NB_Kcal'>
+            <i class="fa-solid fa-fire recette_i fa-2x"></i>
+            <p class='text'>{{ recette.rekcal }}</p>
+            <p class='text'>KCAL</p>
+            <p class='texT'> /PERS</p>
+        </div>
+    </section>
+
+    <section class='Container_commentaire'>
+        <div class='Commentaire'>
+            <p class='maiden-orange-regular'>{{ recette.recommentaires }}</p>
+        </div>
+    </section>
+
+
+
+    <section  class='Container_Ingredient_Etape'>
+        <div class='Ingredient'>
+            <div class='Container_ingredient'>
+                <div class="liste_ingredient">
+                    <div>
+                        <h3 class='h3_Ingrédient'>Ingrédients</h3>          
+                    </div>
+                    <div>
+                        <div class='ingredient'>
+                            {% for nomIngredient, details in ingredientsAggreges %}
+                                <div class='d-flex m-2'>
+                                <p class='color maiden-orange-regular me-2'>{{ details.quantite }} {{ details.unite }}</p>
+                                <p class='maiden-orange-regular'>{{ nomIngredient }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {# <div class='ingredient'>
+                        {% for etape in recette.getEtapes %}
+                            {% for quantite in etape.getQuantites %}
+                            <div class='d-flex m-2'>
+                                <p class='color maiden-orange-regular me-2'>{{ quantite.ququantites }} {{ quantite.unites.unLibelle }}</p>
+                                <p class='maiden-orange-regular'>{{ quantite.produits.prLibelle }}</p>
+                            </div>
+                            {# <p class='maiden-orange-regular m-2'><span class='color maiden-orange-regular'>{{ quantite.ququantites }} {{ quantite.unites.unLibelle }}</span><span class='maiden-orange-regular'>    {{ quantite.produits.prLibelle }}</span></p> #}
+                            {# {% endfor %}
+                        {% endfor %}
+                        </div>                         #} 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='Etape'>
+            <div class="Container_Etape">
+                <div class='Liste_Etape'>
+                    <div>
+                        <h3 class='h3_Ingrédient'>Etapes</h3>  
+                    </div>
+                    {% for etape in recette.getEtapes %}
+                    <div class='etape'>
+                        <div class='d-flex justify-content-between'>
+                            <p class='color taille maiden-orange-regular'>ETAPE {{ etape.etnumero }}</p>
+                        {% if etape.cuisson and etape.cuisson.culibelle %}
+                            <p class='maiden-orange-regular'>{{ etape.cuisson.culibelle }}</p>
+                        {% endif %}                        </div>
+
+                        <div class='Etape_Description'>
+                            <p class='maiden-orange-regular'>{{ etape.etdescription }}</p>
+                        </div>
+
+                        <ul class='d-flex m-0 mt-2 align-items-end p-0 ma_liste maiden-orange-regular'>
+                            {% for quantite in etape.getQuantites %}
+                                <li class='Li_Quantites maiden-orange-regular'>
+                                    {# Affiche toujours la quantité, supposée toujours présente #}
+                                    -<span class='color maiden-orange-regular'>{{ quantite.ququantites }}</span>
+                                    
+                                    {# Vérifier et afficher l'unité si elle n'est pas null #}
+                                    {% if quantite.unites %}
+                                        <span class='ml-2 maiden-orange-regular'>{{ quantite.unites.unlibelle }}</span>
+                                    {% endif %}
+
+                                    {# Vérifier et afficher le produit si il n'est pas null #}
+                                    {% if quantite.produits %}
+                                        <span class='ml-2 maiden-orange-regular'>{{ quantite.produits.prlibelle }}</span>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul> 
+                    </div>                    
+                        {% else %}
+                        <p>Aucune étape disponible pour cette recette.</p>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+</main>
+
+<script>
+    // Désactive le scroll quand la popUp et affiché
+    window.onload = function() {  
+        var element = document.querySelector('.ma_classe'); 
+
+    if (element) {
+        $('.titre').toggle(); 
+    } 
+};
+</script>
+
+{% endblock %}

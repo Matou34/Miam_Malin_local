@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}MiamMalin -{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {# bootstrap #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>        
+        {# fontawesome #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {# jquery #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        {# datatable #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatable/2.0.2/css/datatable.css" integrity="sha512-zHpjdnFxcMInClTw4ZqdX6NNLuPU+iJMZEQsyIjXuQX8TZXzRhZIlUi0tQTGQxt/UGruFgs0qTBshuGN0ts/vQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatable/2.0.2/js/datatable.min.js" integrity="sha512-CQZtPUUFZTngLqcGLyvevuTvdci07FAwAeRiSItEQb+b42YDu5/k80eq2SyVO5lFQsR/PowxrXP6gQPMt/X4pQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+        {# csss #}
+        {% block stylesheets %}
+        <link rel="stylesheet" href={{ asset('css/bootstrap.css') }}>
+        <link rel="stylesheet" href={{ asset('css/app.css') }}>
+        <link rel="stylesheet" href={{ asset('css/Base.css') }}>
+        <link rel="stylesheet" href={{ asset('css/select2.css') }}>
+        <link rel="stylesheet" href={{ asset('css/BackOffice.css') }}>
+
+        {% endblock %}
+        {% block javascripts %}
+        {# <script src={{ asset('js/app.js')}} defer></script>  #}
+
+        {% endblock %}
+    </head>
+
+    <body>
+{# ------------------------ Header --------------------------- #}
+        {# -- logo -- #}
+        <header>
+            <div class='Container_logo'>
+                <a href=""><img src="" alt=""></a>
+                <p class='header_a'>MiamMalin</p>
+            </div>
+
+            {# -- Compte et paramètre -- #}
+            <div class='Container_parametreLink'>
+                <a class='header_a' href="">Contactez-nous</a>
+                {# iconne user connnecté  #}        {# <i class="fa-solid fa-user"></i> #}
+                <a class='header_a' href=""><i class="fa-regular fa-user"></i></a>
+                <div class="dropdown pt-1">
+                    <button class="dropdown-toggle bouton_drop" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" >
+                        <i class="fa-solid fa-gears fa-lg"></i>
+                    </button>
+                    <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+{# ------------------------ Titre --------------------------- #}
+        <section class="titre">
+            <h1>
+                MiamMalin
+            </h1>
+        </section>
+
+{# ------------------------ Nav --------------------------- #}
+        <nav class='Nav'>
+            <div class='Container_link'>
+                <a class='nav_a' href="">Accueil</a>
+                <div class="dropdown pt-1">
+                    <button class="dropdown-toggle bouton_drop nav_a" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" >
+                        Recettes
+                    </button>
+                    <ul class="dropdown-menu  menu_recette" aria-labelledby="dropdownMenuButton1">
+                        <div>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li> 
+                        </div>
+                        <div>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li> 
+                        </div>
+                        <div>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li>
+                        <li><a class="dropdown-item" href={{path('admin_backOffice')}}>back Office</a></li> 
+                        </div>
+                    </ul>
+                </div>
+                <a class='nav_a' href="">Régions du monde</a>
+                <a class='nav_a' href="">Ingrédients</a>
+                <a class='nav_a' href="">Liste de course</a>
+                <a class='nav_a' href="">Menu Semaine</a>
+            </div>
+        </nav>
+        {% block body %}{% endblock %}
+        {# <footer class='footer'>
+            
+        </footer> #}
+    </body>
+    
+</html>

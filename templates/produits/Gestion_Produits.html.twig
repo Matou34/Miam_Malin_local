@@ -1,0 +1,84 @@
+{# ***************************************** FICHIER PARENT ******************************* #}
+
+{% extends 'backOffice.html.twig' %}
+
+{# ***************************************** TITLE **************************************** #}
+
+{% block title %}Produit{% endblock %}
+
+{# ***************************************** NAV ET MENU ********************************** #}
+
+{% block menu %}
+    {% include 'Menu.html.twig' %}
+{% endblock %}
+
+{# ***************************************** BODY ***************************************** #}
+
+{% block body %}
+    {# titre #}
+    <h3 class='text-center'>{{message}}</h3>
+
+
+{# ------------------------------- TABEAU GESTION ------------------------- #}
+    {% if produits | length > 0 %}
+    {# Boutton ajouter #}
+    <a href={{url('Create_Produit')}} class='Cercle' id='affichePopUpProduit' class='btn'><i class="fa-solid fa-plus-minus text-white fa-2x"></i></a>
+
+    <section class="mt-5 mb-5 tableau row m-0">
+        {# Entete du tableau #}
+        <div class='tete_tableau col-lg-11'>
+            <div class="colonne1 col-lg-5">
+                <span scope="col"class='text-center'>Nom Ingrédients</span>
+            </div>
+            <div class="colonne1 col-lg-5">
+                <span scope="col"class='text-center'>Nom Catégories</span>
+            </div>
+            <div class="colonne2 col-lg-2">
+                <span scope="col" class='text-center'>Actions</span>         
+            </div>
+        </div>
+
+            <div class='Corp_tableau col-lg-11 p-0'>
+        {% for produit in produits %} 
+            {# Corp du tableau #}
+                <div class='d-flex col-lg-12 corp_tableau2 d-lg-flex align-items-center {% if loop.index is odd %}ligne-impaire{% else %}ligne-paire{% endif %}'>
+                    <div class="colonne1  col-lg-5 p-0">                
+                        <span scope="col" class='text-center ml-5'>{{ produit.prLibelle}}</span>
+                    </div>
+                    <div class="colonne1  col-lg-5 p-0">                
+                        <span scope="col" class='text-center ml-5'>{{ produit.categorie.caLibelle}}</span>
+                    </div>
+                    <div class="colonne2 col-lg-2">
+                        <span scope="col" class='text-center'> 
+                        {# <a class="affichePopUpUpdate" data-id="{{ categorie.id }}"><i class="fa-solid fa-pen-to-square text-warning fa-lg"></i></a> #}
+                            <a id="affichePopUpUpdate"  href={{url('update_produit', {'id': produit.id})}}><i class="fa-solid fa-pen-to-square text-warning fa-lg"></i></a>
+                            {% if not isProduitsUsed[produit.id] %}
+                            <a id="affichePopUpUpdate" class='delete ml-4'  href={{url('delete_Produit_pop_Up', {'id': produit.id})}}><i class="fa-solid fa-trash-can text-danger fa-lg"></i></a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            {% endfor %} 
+        </div>
+    </section>
+
+    {% else %}
+        <p>Aucun Ingrédient pour l'instant</p>
+    {% endif %} 
+
+{# ***************************************** JAVASCRIPT ***************************************** #}
+
+<script>
+    function OpenPopUp(pSelect) {
+        // Pour afficher le voile et la pop-up
+            $(pSelect).click(function() {
+                $('.voile').toggle(); 
+                $('.popupProduits').toggle();
+            });
+    }
+    OpenPopUp('#affichePopUpProduit');
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,306 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Maiden+Orange&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+.Container_logo {
+  width: 80%;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-left: 2%;
+}
+
+header {
+  display: flex;
+  height: 3em;
+  background-color: #9BBEA9;
+  align-items: center;
+}
+
+.header_a {
+  text-decoration: none;
+  color: #fff;
+  font-family: "Gloria Hallelujah", cursive;
+}
+
+.bouton_drop {
+  background-color: transparent;
+  border: transparent;
+  color: #fff;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.titre_Accueil {
+  font-family: "Anton", sans-serif;
+}
+
+/* compte et paramètre */
+.Container_parametreLink {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 20%;
+  color: white;
+  font-family: "Gloria Hallelujah", cursive;
+}
+
+/* --------------------------------------- Nav ----------------------------------- */
+.Nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 5em;
+  background-color: #f8f8f8;
+  font-family: "Gloria Hallelujah", cursive;
+}
+
+/* boutton nav */
+.Container_link {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.nav_a {
+  font-family: "Gloria Hallelujah", cursive;
+  --border: 2px;
+  --slant: 0.7em;
+  --color: #9BBEA9;
+  font-size: 1.2em;
+  text-decoration: none;
+  padding: 0.4em 1.2em;
+  border: none;
+  cursor: pointer;
+  color: var(--color);
+  background: linear-gradient(to bottom left, var(--color) 50%, rgba(0, 0, 0, 0) 50.1%) top right, linear-gradient(to top right, var(--color) 50%, rgba(0, 0, 0, 0) 50.1%) bottom left;
+  background-size: calc(var(--slant) + 1.3 * var(--border)) calc(var(--slant) + 1.3 * var(--border));
+  background-repeat: no-repeat;
+  box-shadow: 0 0 0 200px inset var(--s, rgba(0, 0, 0, 0)), 0 0 0 var(--border) inset var(--color);
+  -webkit-clip-path: polygon(0 0, calc(100% - var(--slant)) 0, 100% var(--slant), 100% 100%, var(--slant) 100%, 0 calc(100% - var(--slant)));
+          clip-path: polygon(0 0, calc(100% - var(--slant)) 0, 100% var(--slant), 100% 100%, var(--slant) 100%, 0 calc(100% - var(--slant)));
+  transition: color var(--t, 0.3s), background-size 0.3s;
+  background-color: #fff;
+}
+
+.nav_a:focus-visible {
+  outline-offset: calc(-1 * var(--border));
+  outline: var(--border) solid rgba(0, 0, 0, 0.8);
+  -webkit-clip-path: none;
+          clip-path: none;
+  background-size: 0 0;
+}
+
+.nav_a:hover, .nav_a:active {
+  background-size: 100% 100%;
+  --t: 0.2s 0.1s;
+  color: white;
+}
+
+.nav_a:active {
+  --s: #0005;
+  transition: none;
+}
+
+.menu_recette {
+  width: 28.5em;
+  border: #9BBEA9 2px solid;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Main_Detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f8f8;
+}
+
+.Container_detail {
+  width: 80%;
+}
+
+.Titre_DT_Recette {
+  font-size: 2em;
+  font-family: "Gloria Hallelujah", cursive;
+  color: #9BBEA9;
+  font-weight: 1000;
+  margin-bottom: 2%;
+}
+
+.Container_Titre_Recette {
+  display: flex;
+  flex-direction: column;
+}
+
+.Titre_Recette {
+  font-size: 4.5em;
+  font-family: "Anton", sans-serif;
+  font-weight: 600;
+  margin-left: 6%;
+}
+
+.Tag_detail {
+  font-size: 1.2em;
+  font-family: "Anton", sans-serif;
+  margin-top: 5%;
+  margin-left: 6%;
+}
+
+.img_detail {
+  background-position: center center;
+  background-size: cover;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 31.25rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  position: relative;
+}
+
+.Container_detail_2 {
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+  background-color: #fff;
+  border: 1px solid #e6e4e4;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 0 rgba(24, 24, 24, 0.03);
+  padding: 1.875rem;
+}
+
+.recette_i {
+  color: #9BBEA9;
+}
+
+.time_NB_Kcal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 9em;
+}
+
+.text {
+  margin-left: 12%;
+  font-family: "Anton", sans-serif;
+}
+
+.texT {
+  font-family: "Anton", sans-serif;
+}
+
+.Container_Ingredient_Etape {
+  display: flex;
+  width: 80%;
+  margin-top: 4%;
+}
+
+.Ingredient, .Etape {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.h3_Ingrédient {
+  font-family: "Anton", sans-serif;
+}
+
+.Container_ingredient, .Container_Etape {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.liste_ingredient, .Liste_Etape {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid #e6e4e4;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 0 rgba(24, 24, 24, 0.03);
+  padding: 1.875rem;
+}
+
+.Container_commentaire {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Commentaire {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid #e6e4e4;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 0 rgba(24, 24, 24, 0.03);
+  padding: 1.2rem;
+  margin-top: 4%;
+}
+
+.ingredient {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  height: auto;
+  background-color: #f8f9fa;
+  border: 1px solid #f0f0f0;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 0 rgba(24, 24, 24, 0.03);
+  padding: 1.2rem;
+  margin-top: 4%;
+}
+
+.etape {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  height: auto;
+  background-color: #f8f9fa;
+  border: 1px solid #f0f0f0;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 0 rgba(24, 24, 24, 0.03);
+  padding: 1.2rem;
+  margin-top: 4%;
+}
+
+.maiden-orange-regular {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.color {
+  color: #9BBEA9;
+}
+
+.taille {
+  font-size: 1.4em;
+}
+
+.Etape_Description {
+  padding: 2%;
+  margin-top: 2%;
+}
+
+.Li_Quantites {
+  text-decoration: none !important;
+  margin-left: 2%;
+}
+
+.ma_liste {
+  list-style-type: none;
+}/*# sourceMappingURL=Base.css.map */

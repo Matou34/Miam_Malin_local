@@ -1,0 +1,80 @@
+{% block menu %}
+<div class="voile"></div>
+
+    <div class='Container_gestion row m-0'>
+        <section class='header_popUp0 d-flex col-lg-12'>
+            <div class="ml-5 col-lg-1 d-flex align-items-center">
+                <a class='a_BackOffice' href={{ path('app_accueil') }}>MiamMalin</a>          
+            </div>
+
+            <div class='col-lg-11 titre_create '>
+                <h2>Gestion BackOffice</h2>  
+            </div>
+        </section>
+    </div>
+
+    <div>
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span></span>
+            </label>     
+
+        <ul class="menu__box">
+            <li class="menu__item">
+                <a class="nav-link collapsed" href={{path('recette_list')}}>
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span >Gestion Recettes</span>
+                </a>
+            </li>
+
+            <li class="menu__item">
+                <a class="nav-link collapsed" href={{path('Gestion_Catégorie')}}>
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span >Gestion Catégories</span>
+                </a>
+            </li>
+
+            <li class="menu__item">
+                <a class="nav-link collapsed" href={{path('Gestion_Unites')}}>
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Gestion Unités</span>
+                </a>
+            </li>
+
+            <li class="menu__item">
+                <a class="nav-link collapsed" href={{path('Gestion_tags')}}>
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span >Gestion tags</span>
+                </a>
+            </li>
+
+            <li class="menu__item ">
+                <a class="nav-link" href={{path('Gestion_Produits')}}>
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Gestion Ingrédients</span>
+                </a>
+            </li>
+
+            <li class="menu__item">
+                <a class="nav-link" href={{path('Gestion_Cuissons')}}>
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Gestion Mode cuissons</span>
+                </a>
+            </li>
+
+            <li class="menu__item">
+                <a class="nav-link" href={{path('Gestion_Regions')}}>
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span >Gestion des régions</span>
+                </a>
+            </li>
+
+            <li class="menu__item">
+                <a class="nav-link collapsed" href="">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span >Gestion utilisateurs</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

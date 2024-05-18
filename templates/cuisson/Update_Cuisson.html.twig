@@ -1,0 +1,42 @@
+{# ***************************************** POP UP UPDATE ***************************************** #}
+
+{% block body %}
+        {# Pop Up formulaire #}
+        <div class="modal fade" id="updateCuisson{{ cuisson.id }}"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateCuissonLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content j">
+                    <div class="modal-header popUP_Create Edit-mode">
+                        {# Icon update #}
+                        <i class="fa-solid fa-pen-to-square fa-3x changeColor"></i>
+                        {# titre update #}
+                        <h5 class="modal-title" id="cuissonLabel"> UPDATE MODE CUISSON</h5>
+                        {# Btn close #}
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    {# Pop Up formulaire update #}
+                    <form method="post" enctype="multipart/form-data" id='updateCuisson{{ cuisson.id }}' action="{{ path('update_cuisson' , { id : cuisson.id }) }}">
+                        <div class='row m-0 justify-content-center mt-3 '>
+                            <div class='col-lg-8 p-0' >
+                                <div class='col-lg-6'>
+                                    {# Label et input #}
+                                    <label for="{{ form.cu_libelle.vars.id }}" class="form-contro">Titre du mode de cuisson</label>
+                                    {{ form_widget(form.cu_libelle, {'attr': {'class': 'form-control form-control'}}) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='SubmitRecettes'>
+                            {# bouton retour pour sortir de la popUp #}
+                            <button type="button" class="btn myBoutton text-white" data-bs-dismiss="modal">Fermer</button>
+                            {# Boutton Submit #}
+                            {{ form_widget(form.submit , {'attr': {'class': 'btn  myBouttonSubmit_Edit m-2'}}) }}
+                        </div>
+
+                        {{ form_rest(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+

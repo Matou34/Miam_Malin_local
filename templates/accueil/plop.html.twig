@@ -1,0 +1,20 @@
+<!-- Modal -->
+<div class="modal fade" id="modal{{ recette.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<i class="fa-solid fa-triangle-exclamation modalIconColor fa-2xl"></i>
+				<h5 class="modal-title" id="staticBackdropLabel">
+					ATTENTION SUPPRESSION</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{{ recette.reLibelle}}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+				<a class="btn btn-danger" href={{url('recette_delete', {'id': recette.id} )}}>Supprimer</a>
+			</div>
+		</div>
+	</div>
+</div>

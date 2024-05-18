@@ -1,0 +1,103 @@
+{# ***************************************** FICHIER PARENT ******************************* #}
+
+{% extends 'backOffice.html.twig' %}
+
+{# ***************************************** TITLE **************************************** #}
+
+{% block title %}Gestion Recette{% endblock %}
+
+{# ***************************************** NAV ET MENU ********************************** #}
+
+{% block menu %}
+    {% include 'Menu.html.twig' %}
+{% endblock %}
+
+{# ***************************************** BODY ***************************************** #}
+
+{% block body %}
+<div class='Container_gestion_recette'>
+    {# Boutton ajouter une recette #}
+    <a href={{url('Create_recette')}} class='Cercle' id='affichePopUp' class='btn'><i class="fa-solid fa-plus-minus text-white fa-2x"></i></a>
+
+    {# Barre de recherche   #}
+    <section class="Container_Search">
+        <div class="Titre_Search" >
+            <h4 class='text-dark'>Recherche recettes</h4>
+        </div>
+
+        <div class="searchs">
+            <form action="{{ path('recherche_recette') }}" method="get">
+                <div class="recherche">
+                    <div class="search_input">
+                            <label for="search" class="sr-only">Recherche</label>
+                            <input type="search" name="q" class="Input_Search" id="search" placeholder="Rechercher...">                  
+                    </div>
+                    <div class="Search_icon">
+                    <a type="submit"><i class="fa-solid fa-magnifying-glass"></i></a>   
+                    </div>
+                    <a class="Search_icon_Close btn btn-danger ml-2" href={{url('recette_list')}}>X</a>                           
+                </div> 
+            </form>
+        </div>
+    </section>
+
+    {# affichage des recettes #}
+    <div class='cardrecette d-flex row m-0'>
+        {% for recette in recettes %}
+        <div class="card col-3">
+            <img src="{{ vich_uploader_asset(recette, 'imageFile') }}" class="card-image" alt="{{ recette.reLibelle }}">   
+            <div class='d-flex align-items-center  p-2'>             
+                <div class='Card_Title'>
+                    <h5 class="card-title">{{ recette.reLibelle}}</h5>             
+                </div>
+
+                <div class='d-flex Card_icons'>
+                    <a class='m-1' title='Voir recette' href={{url('Detail_Recette', {'id': recette.id})}}><i class="fa-solid fa-eye fa-lg"></i></a>
+                    <a href={{url('Create_etapes', {'id': recette.id})}} title='Ajouter une étape' class='Petit_Cercle m-1' id='affichePopUp' class='btn'><i class="fa-solid fa-plus text-white"></i></a>
+                    <a class="card-link m-1" title='Modifier recette' href={{url('recette_update', {'id': recette.id})}}><i class="fa-solid fa-pen-to-square text-warning fa-lg"></i></a>
+                    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ recette.id }}" class='delete m-1'><i class="fa-solid fa-trash-can text-danger fa-lg"></i></button>                            
+                </div>
+            </div>
+        </div>
+        {# --------------------------Modal Supprimer ----------------------------------------------------- #}
+        <div class="modal fade" id="staticBackdrop{{ recette.id }}"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <i class="fa-solid fa-triangle-exclamation modalIconColor fa-2xl"></i>
+                        <h5 class="modal-title" id="staticBackdropLabel"> ATTENTION SUPPRESSION</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Suppression de la région {{ recette.reLibelle}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        <a  class="btn btn-danger" href={{url('recette_delete', {'id': recette.id})}}>Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %} 
+    </div>
+
+</div>
+
+<script>
+
+    function OpenPopUp(pSelect) {
+        // Pour afficher le voile et la pop-up
+            $(pSelect).click(function() {
+                $('.voile').toggle(); 
+                $('.popupRecette').toggle();
+                $('.popupEtape').toggle();
+            });
+    }
+    OpenPopUp('#affichePopUp');
+
+
+</script>
+
+
+
+{% endblock %}
