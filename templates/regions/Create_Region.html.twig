@@ -1,72 +1,41 @@
-{# ***************************************** FICHIER PARENT ******************************* #}
-
-{% extends 'backOffice.html.twig' %}
-
-{# ***************************************** TITLE **************************************** #}
-
-{% block title %}Regions{% endblock %}
-
-{# ***************************************** NAV ET MENU ********************************** #}
-
-{% block menu %}
-	{% include 'regions/Gestion_Regions.html.twig' %}
-{% endblock %}
-
-{# ***************************************** BODY ***************************************** #}
-
-{% block body %}
 {# --------------------------------------POPUP ADD ------------------------------ #}
-
-	<div id='container_form' class='ma-classe'>
-		{# Pop Up formulaire Ajouter #}
-        <form method="post" enctype="multipart/form-data" class='popupCatégorie'>
-			<div class='popUP_Create add-mode'>
-				<div
-					class='col-lg-3 Create add-mode'>
-					{# Icon add #}
-					<i class="fa-regular fa-square-plus fa-5x changeColor"></i>
-				</div>
-
-				<div
-					class='d-flex align-items-center'>
-					{# titre #}
-					<h4> CREATE REGION</h4>
-				</div>
-			</div>
-
-            <div class='row m-0 justify-content-center mt-3 '>
-                <div class='col-lg-8 p-0' >
-                    <div class='col-lg-6'>
-                        {# Label et input #}
-                        <label for="{{ form.reg_libelle.vars.id }}" class="form-contro">Titre de la région</label>
-                        {{ form_widget(form.reg_libelle, {'attr': {'class': 'form-control form-control'}}) }}
+{% block body %}
+        {# Pop Up formulaire #}
+        <div class="modal modale fade" id="createRegion"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createRegionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header popUP_Create add-mode">
+                        {# Icon add #}
+                        <i class="fa-regular fa-square-plus fa-3x changeColor"></i>
+                        {# titre #}
+                        <h5 class="modal-title" id="cuissonLabel"> CREATE RÉGION</h5>
+                        {# Btn close #}
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    {# Pop Up formulaire Ajouter #}
+                    <form method="post" enctype="multipart/form-data" id='createRegion'>
+                        <div class='row m-0 justify-content-center mt-3 '>
+                            <div class='col-lg-8 p-0'>
+                                <div class='col-lg-6'>
+                                    {# Label et input #}
+                                    <label for="{{ form.reg_libelle.vars.id }}" class="form-contro">Titre de la région</label>
+                                    {{ form_widget(form.reg_libelle, {'attr': {'class': 'form-control form-control'}}) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='SubmitRecettes'>
+                            {# bouton retour pour sortir de la popUp #}
+                            <button type="button" class="btn myBoutton text-white" data-bs-dismiss="modal">Fermer</button>
+                            {# Boutton Submit #}
+                            {{ form_widget(form.submit , {'attr': {'class': 'btn  myBouttonSubmit m-2'}}) }}
+                        </div>
+
+                        {{ form_rest(form) }}
+                    </form>
                 </div>
             </div>
-
-            <div class='SubmitRecettes'>
-                {# bouton retour pour sortir de la popUp #}
-                <a class="m-2 btn myBoutton affichePopUp" href={{url('Gestion_Regions')}}>Retour</a>
-                {# Boutton Submit #}
-                {{ form_widget(form.submit , {'attr': {'class': 'btn  myBouttonSubmit m-2'}}) }}
-            </div>
-
-            {{ form_rest(form) }}
-        </form>
-    </div>
-
-{# ***************************************** JAVASCRIPT ***************************************** #}
-
-<script>
-    // Désactive le scroll quand la popUp et affiché
-    window.onload = function () {
-    var element = document.querySelector('.ma-classe');
-    if (element) {
-    document.body.classList.add('scroll-desactive');
-    $('.voile').toggle();
-    }
-    };
-</script>
+        </div>
 {% endblock %}
 
 

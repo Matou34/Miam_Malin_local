@@ -1,10 +1,10 @@
-{# ***************************************** FICHIER PARENT ******************************* #}
+{# ***************************************** LAYOUT ******************************* #}
 
 {% extends 'backOffice.html.twig' %}
 
 {# ***************************************** TITLE **************************************** #}
 
-{% block title %}Régions{% endblock %}
+{% block title %}Gestion des Régions{% endblock %}
 
 {# ***************************************** NAV ET MENU ********************************** #}
 
@@ -17,59 +17,83 @@
 {% block body %}
     {# titre #}
     <h3 class='text-center'>{{message}}</h3>
+    <div class="containerPopUP"></div>
 
+{# ------------------------------- BOUTON ADD ------------------------- #}
     {# Boutton ajouter #}
-    <a href={{url('Create_Region')}} class='Cercle' id='affichePopUpProduit' class='btn'><i class="fa-solid fa-plus-minus text-white fa-2x"></i></a>
+    <button data-bs-toggle="modal" onclick='showModalCreateRegion()' class='Cercle btn'><i class="fa-solid fa-plus-minus text-white fa-2x"></i></button>
 
-{# ------------------------------- TABEAU GESTION ------------------------- #}
-    {% if regions | length > 0 %}
-        <section class="mt-5 mb-5 tableau row m-0">
-            {# Entete du tableau #}
-            <div class='tete_tableau col-lg-11'>
-                <div class="colonne1 col-lg-10">
-                    <span scope="col"class='text-center'>Nom régions</span>
-                </div>
-                <div class="colonne2 col-lg-2">
-                    <span scope="col" class='text-center'>Actions</span>         
-                </div>
-            </div>
-
-            {# Corp du tableau #}
-            <div class='Corp_tableau col-lg-11 p-0'>
-                {% for region in regions %} 
-                    <div class='d-flex col-lg-12 corp_tableau2 d-lg-flex align-items-center {% if loop.index is odd %}ligne-impaire{% else %}ligne-paire{% endif %}'>
-                        <div class="colonne1  col-lg-10 p-0">                
-                            <span scope="col" class='text-center ml-5'>{{region.regLibelle}}</span>
-                        </div>
-                        <div class="colonne2 col-lg-2">
-                            <span scope="col" class='text-center'> 
-                            {# <a class="affichePopUpUpdate" data-id="{{ categorie.id }}"><i class="fa-solid fa-pen-to-square text-warning fa-lg"></i></a> #}
-                                <a id="affichePopUpUpdate"  href={{url('update_regions', {'id': region.id})}}><i class="fa-solid fa-pen-to-square text-warning fa-lg"></i></a>
-                                {% if not isRegionUsed[region.id] %}
-                                    <a id="affichePopUpUpdate" class='delete ml-4'  href={{url('delete_Region_pop_Up', {'id': region.id})}}><i class="fa-solid fa-trash-can text-danger fa-lg"></i></a>
-                                {% endif %}
-                            </span>
-                        </div>
-                    </div>
-                {% endfor %} 
-            </div>
-        </section>
-    {% else %}
-        <p>Aucun régions pour l'instant</p>
-    {% endif %} 
+    <section class='Container_Table'></section>
 
 <script>
-
-    function OpenPopUp(pSelect) {
-        // Pour afficher le voile et la pop-up
-            $(pSelect).click(function() {
-                $('.voile').toggle(); 
-                $('.popupCatégorie').toggle();
+    // Affiche le tableau
+    $(document).ready(function() {
+        function showDisplay_list_Regions() {
+            $.ajax({
+                url: '{{ path('Display_List_Regions') }}',
+                type: 'GET',
+                success: function(response) {
+                    $('.Container_Table').html(response);
+                    $('#dtValues').DataTable({
+                        "stateSave": true,
+                        "responsive": true,
+                        "language": { "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/fr-FR.json" },
+                        "pageLength": 4,
+                    });                },
+                error: function(request, error) {
+                    console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+                }
             });
+        }
+
+        showDisplay_list_Regions();
+    });
+
+    // Affiche la modal create
+    function showModalCreateRegion() {
+        $.ajax({
+            url: '{{ path('Create_Region') }}',
+            type: 'GET',
+            success: function(html) {
+                $('.containerPopUP').html(html);
+                $('#createRegion').modal('show');
+            },
+            error: function(request, error) {
+                console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+            }
+        });
     }
-    OpenPopUp('#affichePopUp');
 
+    // Affiche la modal Update
+    function showModalUpdateRegion(id) {
+        const url = "{{ path('update_regions', {'id': 'ID_PLACEHOLDER'}) }}".replace('ID_PLACEHOLDER', id);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(html) {
+                $('.containerPopUP').html(html);
+                $('#updateRegions' + id).modal('show');
+            },
+            error: function(request, error) {
+                console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+            }
+        });
+    }
+
+    // Affiche la modal delete
+    function showModalDeleteRegion(id) {
+        const url = "{{ path('delete_region', {'id': 'ID_PLACEHOLDER'}) }}".replace('ID_PLACEHOLDER', id);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(html) {
+                $('.containerPopUP').html(html);
+                $('#DeleteRegion' + id).modal('show');
+            },
+            error: function(request, error) {
+                console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+            }
+        });
+    }
 </script>
-
-
 {% endblock %}

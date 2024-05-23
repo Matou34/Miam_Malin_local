@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap");
 .Cercle {
   width: 5em;
   height: 5em;
@@ -66,51 +67,50 @@ h4 {
   border-radius: 13px;
 }
 
+h3 {
+  font-size: 2em;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  font-family: "Blinker", sans-serif;
+}
+
 /* ---------------------------------------Tableau ----------------------------------- */
-.tableau {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  color: white;
-}
-
-.tete_tableau {
-  display: flex;
-  height: 5em;
-  background-color: #9BBEA9;
-  align-items: center;
-  border-radius: 10px;
-}
-
-.Corp_tableau {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.corp_tableau2 {
-  height: 3em;
-}
-
-.ligne-impaire {
-  background-color: var(--ligneImpaire);
-  color: #212121;
-}
-
-.ligne-paire {
-  background-color: #edf6f9;
-  color: #212121;
-}
-
-.test {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
 .delete {
   border: none;
   background-color: transparent;
+}
+
+#dataTables_Container {
+  border: #9BBEA9 solid 2px;
+  border-radius: 10px;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+}
+
+.custom-thead {
+  background-color: #9BBEA9 !important;
+  color: #ffffff !important;
+  height: 2em !important;
+}
+
+#dtValues_wrapper > div:first-child, #dtValues_wrapper > div:last-child {
+  padding: 0.5% 2% !important;
+  font-family: "Blinker", sans-serif;
+}
+
+#dtValues_filter > label, .dataTables_info, .dataTables_length > label, td, th {
+  font-family: "Blinker", sans-serif;
+}
+
+td > a {
+  text-decoration: none;
+}
+
+.page-link {
+  font-family: "Blinker", sans-serif;
+  background-color: #9BBEA9 !important;
+  border: white solid 1px !important;
+  color: #fff !important;
 }
 
 .Edit-mode {
@@ -128,6 +128,11 @@ h4 {
 
 .myBouttonSubmit_Edit:hover {
   background-color: #f4a261;
+}
+
+.Btn {
+  border: none;
+  background-color: transparent;
 }
 
 .Delete-mode {
@@ -512,7 +517,7 @@ body.scroll-desactive {
   position: absolute;
   z-index: 9999;
   height: 23em;
-  width: 36%;
+  width: 60%;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 1px 3px -1px rgb(0, 0, 0);
@@ -525,4 +530,8 @@ body.scroll-desactive {
   font-family: "Anton", sans-serif;
   margin-left: 2%;
   font-size: 1.5em;
+}
+
+.modal {
+  top: 15%;
 }/*# sourceMappingURL=BackOffice.css.map */
