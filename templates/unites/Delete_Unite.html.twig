@@ -1,0 +1,30 @@
+{# --------------------------------------POPUP DELETE ------------------------------ #}
+	{% block body %}
+        {# Pop Up formulaire #}
+        <div class="modal fade" id="DeleteUnite{{ unite.id }}"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="DeleteUniteLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header popUP_Create Delete-mode">
+						{# Icon Supprimer #}
+						<i class="fa-solid fa-trash-can fa-3x changeColor mb-1"></i>
+                        {# titre Delete #}
+                        <h5 class="modal-title" id="cuissonLabel"> DELETE UNITÉ</h5>
+                        {# Btn close #}
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+					<div class="main_delete">
+						<p>Suppression de l'unité
+							<span class='text_color_Delete'>{{ unite.unlibelle}}</span>
+						</p>
+					</div>
+
+					<div class='SubmitRecettes'>
+						<a class="m-2 btn  myBoutton affichePopUp" href={{url('Gestion_Unites')}}>Retour</a>
+						<a class="btn myBouttonSubmit_Delete m-2" href={{url('delete_Unite', {'id': unite.id} )}}>Supprimer</a>
+					</div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+

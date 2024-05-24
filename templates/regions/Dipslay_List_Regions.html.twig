@@ -1,0 +1,27 @@
+{% if regions | length > 0 %}
+    <div id="dataTables_Container" class="col m-3">
+        <table id="dtValues" class="table table-striped" style="width:100%">
+            <thead class='pt-2'>
+                <tr>
+                    <th class="custom-thead custom-Thead">Nom régions</th>
+                    <th class="custom-thead custom-THead">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for region in regions %}
+                    <tr>
+                        <td>{{ region.regLibelle }}</td>
+                        <td>
+                            <button onclick="showModalUpdateRegion('{{ region.id }}')" class='Btn'><i class="fa-solid fa-pen-to-square text-warning fa-lg"></i></button>                            
+                            {% if not isRegionUsed[region.id] %}
+                            <button onclick="showModalDeleteRegion('{{ region.id }}')" class='Btn'><i class="fa-solid fa-trash-can text-danger fa-lg"></i></button>                            
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>Aucun régions pour l'instant</p>
+{% endif %} 

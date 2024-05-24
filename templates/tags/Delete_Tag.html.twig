@@ -1,0 +1,27 @@
+{# ***************************************** POP UP DELETE ***************************************** #}
+
+{% block body %}
+        {# Pop Up formulaire #}
+        <div class="modal fade" id="DeleteTag{{ tag.id }}"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="DeleteTagLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header popUP_Create Delete-mode">
+						{# Icon Supprimer #}
+						<i class="fa-solid fa-trash-can fa-3x changeColor mb-1"></i>
+                        {# titre Delete #}
+                        <h5 class="modal-title" id="cuissonLabel"> DELETE TAG</h5>
+                        {# Btn close #}
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+					<div class="main_delete">
+						<p>Suppression du tag
+							<span class='text_color_Delete'>{{ tag.talibelle}}</span>
+						</p> href={{url('Gestion_tags')}}>Retour</a>
+						<a class="btn myBouttonSubmit_Delete m-2" href={{url('delete_Tag', {'id': tag.id} )}}>Supprimer</a>
+					</div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+

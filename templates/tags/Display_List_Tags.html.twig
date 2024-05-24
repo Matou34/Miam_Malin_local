@@ -1,0 +1,27 @@
+    {% if tags | length > 0 %}
+    <div id="dataTables_Container" class="col m-3">
+        <table id="dtValues" class="table table-striped" style="width:100%">
+            <thead class='pt-2'>
+                <tr>
+                    <th class="custom-thead custom-Thead">Nom Tags</th>
+                    <th class="custom-thead custom-THead">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tag in tags %} 
+                    <tr>
+                        <td>{{ tag.talibelle }}</td>
+                        <td>
+                            <button onclick="showModalUpdateTag('{{ tag.id }}')" class='Btn m-1'><i class="fa-solid fa-pen-to-square text-warning fa-lg"></i></button>                            
+                            {% if not isTagUsed[tag.id] %}
+                            <button onclick="showModalDeleteTag('{{ tag.id }}')" class='Btn m-1'><i class="fa-solid fa-trash-can text-danger fa-lg"></i></button>                            
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>Aucun tag pour l'instant</p>
+{% endif %} 

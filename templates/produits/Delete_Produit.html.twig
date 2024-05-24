@@ -1,0 +1,29 @@
+{# ***************************************** POP UP DELETE ***************************************** #}
+
+{% block body %}
+        {# Pop Up formulaire #}
+        <div class="modal fade" id="DeleteProduit{{ produit.id }}"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="DeleteProduitLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header popUP_Create Delete-mode">
+						{# Icon Supprimer #}
+						<i class="fa-solid fa-trash-can fa-3x changeColor mb-1"></i>
+                        {# titre Delete #}
+                        <h5 class="modal-title" id="cuissonLabel"> DELETE INGRÉDIENT</h5>
+                        {# Btn close #}
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+					<div class="main_delete">
+						<p>Suppression de l'ingrédient
+							<span class='text_color_Delete'>{{ produit.prlibelle}}</span>
+						</p>
+					</div>
+
+					<div class='SubmitRecettes'>
+						<a class="m-2 btn  myBoutton affichePopUp" href={{url('Gestion_Produits')}}>Retour</a>
+						<a class="btn myBouttonSubmit_Delete m-2" href={{url('delete_Produit', {'id': produit.id} )}}>Supprimer</a>
+					</div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

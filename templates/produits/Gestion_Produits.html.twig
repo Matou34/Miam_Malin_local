@@ -1,0 +1,102 @@
+{# ***************************************** FICHIER PARENT ******************************* #}
+
+{% extends 'backOffice.html.twig' %}
+
+{# ***************************************** TITLE **************************************** #}
+
+{% block title %}Produit{% endblock %}
+
+{# ***************************************** NAV ET MENU ********************************** #}
+
+{% block menu %}
+    {% include 'Menu.html.twig' %}
+{% endblock %}
+
+{# ***************************************** BODY ***************************************** #}
+
+{% block body %}
+    {# titre #}
+    <h3 class='text-center'>{{message}}</h3>
+    <div class="containerPopUP"></div>
+
+    {# ------------------------------- BOUTON ADD ------------------------- #}
+    {# Boutton ajouter #}
+    <button data-bs-toggle="modal" onclick='showModalCreateProduit()' class='Cercle btn'><i class="fa-solid fa-plus-minus text-white fa-2x"></i></button>
+
+    <section class='Container_Table'></section>
+
+
+<script>
+    // Affiche le tableau
+    $(document).ready(function() {
+        function showDisplay_list_Produits() {
+            $.ajax({
+                url: '{{ path('Display_List_Produits') }}',
+                type: 'GET',
+                success: function(response) {
+                    $('.Container_Table').html(response);
+                    $('#dtValues').DataTable({
+                        "stateSave": true,
+                        "responsive": true,
+                        "language": { "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/fr-FR.json" },
+                        "pageLength": 4,
+                    });                },
+                error: function(request, error) {
+                    console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+                }
+            });
+        }
+
+        showDisplay_list_Produits();
+    });
+
+    // Affiche la modal create
+    function showModalCreateProduit() {
+        $.ajax({
+            url: '{{ path('Create_Produit') }}',
+            type: 'GET',
+            success: function (html) {
+                $('.containerPopUP').html(html);
+                $('#createProduit').modal('show');
+            },
+            error: function (request, error) {
+                console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+            }
+        });
+    }
+
+    // Affiche la modal Update
+    function showModalUpdateProduit(id) {
+        const url = "{{ path('update_produit', {'id': 'ID_PLACEHOLDER'}) }}".replace('ID_PLACEHOLDER', id);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (html) {
+                $('.containerPopUP').html(html);
+                $('#updateProduit' + id).modal('show');
+            },
+            error: function (request, error) {
+                console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+            }
+        });
+    }
+
+    // Affiche la modal delete
+    function showModalDeleteProduit(id) {
+        const url = "{{ path('delete_Produit', {'id': 'ID_PLACEHOLDER'}) }}".replace('ID_PLACEHOLDER', id);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (html) {
+                $('.containerPopUP').html(html);
+                $('#DeleteProduit' + id).modal('show');
+            },
+            error: function (request, error) {
+                console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+            }
+        });
+    }
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,172 @@
+{# ***************************************** FICHIER PARENT ******************************* #}
+
+{% extends 'backOffice.html.twig' %}
+
+{# ***************************************** TITLE **************************************** #}
+
+{% block title %}Ajout Recette
+{% endblock %}
+
+{# ***************************************** NAV ET MENU ********************************** #}
+
+{% block menu %}
+	{% include 'recettes/update_recette.html.twig' %}
+{% endblock %}
+
+
+{# ***************************************** BODY ***************************************** #}
+
+{% block body %}
+
+	{# **************** gestion d ela bibliothèque select2 pour l'input select ***************** #}
+
+	<!-- Inclusion de jQuery --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+	<!-- Inclusion de Select2 JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+
+$(".js-example-theme-multiple").select2({theme: "classic"});
+});
+	</script>
+
+	{# --------------------------------------POPUP ADD RECETTE ------------------------------ #}
+
+
+	<div
+		id='container_form ' class='ma-classe'>
+		{# Pop Up formulaire update #}
+		<form method="post" enctype="multipart/form-data" class='popupRecette' action="{{path('recette_update_Final', {id : recette.id })}}">
+			<div class='popUP_Create Edit-mode'>
+				<div
+					class='col-lg-3 Create Edit-mode'>
+					{# Icon update #}
+					<i class="fa-solid fa-pen-to-square fa-4x changeColor"></i>
+				</div>
+
+				<div
+					class='d-flex align-items-center'>
+					{# titre update #}
+					<h4>UPDATE RECETTE</h4>
+				</div>
+			</div>
+
+			<div class='d-flex col-12 mt-2'>
+				<div class='col-lg-4'>
+					<div class='p-0'>
+						<div>
+							{# Label et input #}
+							<label for="{{ form.re_libelle.vars.id }}" class="form-contro">Nom de la recette*</label>
+							{{ form_widget(form.re_libelle, {'attr': {'class': 'form-control'}}) }}
+						</div>
+					</div>
+				</div>
+
+				<div class=' col-lg-4'>
+					<div class='p-0'>
+						<div
+							class=''>
+							{# Label et input #}
+							<label for="{{ form.imageFile.vars.id }}" class=" form-contro">Image de la recette*</label>
+							{# <img src={{ asset('recettes_images/' ~ recette.ReImage) }} alt="" width="20%;"> #}
+							{{ form_widget(form.imageFile, {'attr': {'class': 'form-control form-control'}}) }}
+						</div>
+					</div>
+				</div>
+
+				<div class='col-lg-4'>
+					<div class='p-0'>
+						<div>
+							{# Label et input #}
+							<label for="{{ form.re_nb_personnes.vars.id }}" class="form-contro">Nb de personnes*</label>
+							{{ form_widget(form.re_nb_personnes, {'attr': {'class': 'form-control form-control'}}) }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class='d-flex col-12 mt-2'>
+				<div class='col-lg-4'>
+					<div class='p-0'>
+						<div>
+							{# Label et input #}
+							<label for="{{ form.re_temps.vars.id }}" class="form-contro">Temps recette*</label>
+							{{ form_widget(form.re_temps, {'attr': {'class': 'form-control form-control'}}) }}
+						</div>
+					</div>
+				</div>
+
+				<div class='col-lg-4'>
+					<div class='p-0'>
+						<div>
+							{# Label et input #}
+							<label for="{{ form.regions.vars.id }}" class="form-contro">Région de la recette*</label>
+							{{ form_widget(form.regions, {'attr': {'class': 'form-control form-control'}}) }}
+						</div>
+					</div>
+				</div>
+
+				<div class='col-lg-4'>
+					<div class='p-0'>
+						<div>
+							{# Label et input #}
+							<label for="{{ form.re_kcal.vars.id }}" class="form-contro">Calories recette*</label>
+							{{ form_widget(form.re_kcal, {'attr': {'class': 'form-control form-control'}}) }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class='d-flex col-12 mt-2'>
+				<div
+					class='col-lg-12'>
+					{# Label et input #}
+					<label for="{{ form.re_commentaires.vars.id }}" class="form-contro">Commentaires sur la recette*</label>
+					{{ form_widget(form.re_commentaires, {'attr': {'class': 'form-control form-control'}}) }}
+				</div>
+			</div>
+
+			<div class='d-flex col-12 mt-2'>
+				<div
+					class='col-lg-12'>
+					{# Label et input #}
+					<label for="{{ form.recette_tags.vars.id }}" class="form-contro">Tags de la recette*</label>
+					{{ form_widget(form.recette_tags , {'attr': {'class': 'js-example-theme-multiple form-control'}})}}
+				</div>
+			</div>
+
+
+			<div
+				class='SubmitRecettes'>
+				{# bouton retour pour sortir de la popUp #}
+				<a class="m-2 btn  myBoutton affichePopUp" href={{url('recette_update', {'id': recette.id})}}>Retour</a>
+				{# Boutton Submit #}
+				{{ form_widget(form.submit , {'attr': {'class': 'btn myBouttonSubmit_Edit m-2'}}) }}
+			</div>
+
+		</form>
+	</div>
+
+	<script>
+		// Désactive le scroll quand la popUp et affiché
+window.onload = function () {
+var element = document.querySelector('.ma-classe');
+
+if (element) {
+document.body.classList.add('scroll-desactive');
+$('.voile').toggle();
+}
+};
+
+
+function OpenPopUp(pSelect) { // Pour afficher le voile et la pop-up
+$(pSelect).click(function () {
+$('.voile').toggle();
+$('.popupRecette').toggle();
+$('.popupEtape').toggle();
+});
+}
+OpenPopUp('#affichePopUp');
+	</script>
+{% endblock %}

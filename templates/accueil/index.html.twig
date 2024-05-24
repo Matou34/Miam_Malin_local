@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello AccueilController!{% endblock %}
+
+{% block body %}
+
+
+        <div class="Container_Nouvelle_Recette">
+                <div>
+                        <h2>Nouvelles Recettes</h2>
+                </div>
+        </div>
+
+<div class="container">
+        {% for recette in recettes %} 
+        <div class="card">
+                <div class="card-image">
+                        <img  src="{{ asset('recettes_images/' ~ recette.reimage|url_encode) }}" alt="Image de la recette">       
+                </div>
+
+                <div class="card-text">
+                {# {% for tag in recette.recette_tag %}
+                        <p class="card-meal-type">{{ tag.ta_libelle }}</p>
+                {% endfor %} #}
+                        <h2 class="card-title">{{recette.relibelle}}</h2>
+                        <p class="card-body">{{recette.recommentaires}}</p>
+                        {# <a class="btn btn-info" href={{url('app_recette_details', {'id': recette.id})}}>Voir recette</a> #}
+                        <a class="btn btn-danger" href={{url('recette_delete', {'id': recette.id})}}>Supprimer</a>
+                        <a class="btn btn-danger" href={{url('recette_update', {'id': recette.id})}}>modifier</a>
+
+                </div>
+        </div>
+        {% endfor %} 
+</div>
+{% endblock %}

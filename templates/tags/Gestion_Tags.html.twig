@@ -1,0 +1,105 @@
+{# ***************************************** FICHIER PARENT ******************************* #}
+
+{% extends 'backOffice.html.twig' %}
+
+{# ***************************************** TITLE **************************************** #}
+
+{% block title %}Tag{% endblock %}
+
+{# ***************************************** NAV ET MENU ********************************** #}
+
+{% block menu %}
+    {% include 'Menu.html.twig' %}
+{% endblock %}
+
+{# ***************************************** BODY ***************************************** #}
+
+{% block body %}
+    {# titre #}
+    <h3 class='text-center'>{{message}}</h3>
+
+
+    <div class="containerPopUP"></div>
+
+    {# ------------------------------- BOUTON ADD ------------------------- #}
+    {# Boutton ajouter #}
+    <button data-bs-toggle="modal" onclick='showModalCreateTag()' class='Cercle btn'><i class="fa-solid fa-plus-minus text-white fa-2x"></i></button>
+
+    <section class='Container_Table'></section>
+
+
+<script>
+    // Affiche le tableau
+    $(document).ready(function() {
+        function showDisplay_list_Tags() {
+            $.ajax({
+                url: '{{ path('Display_List_Tags') }}',
+                type: 'GET',
+                success: function(response) {
+                    $('.Container_Table').html(response);
+                    $('#dtValues').DataTable({
+                        "stateSave": true,
+                        "responsive": true,
+                        "language": { "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/fr-FR.json" },
+                        "pageLength": 4,
+                    });                },
+                error: function(request, error) {
+                    console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+                }
+            });
+        }
+
+        showDisplay_list_Tags();
+    });
+
+    // Affiche la modal create
+    function showModalCreateTag() {
+        $.ajax({
+            url: '{{ path('Create_Tag') }}',
+            type: 'GET',
+            success: function (html) {
+                $('.containerPopUP').html(html);
+                $('#createTag').modal('show');
+            },
+            error: function (request, error) {
+                console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+            }
+        });
+    }
+
+    // Affiche la modal Update
+    function showModalUpdateTag(id) {
+        const url = "{{ path('update_tags', {'id': 'ID_PLACEHOLDER'}) }}".replace('ID_PLACEHOLDER', id);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (html) {
+                $('.containerPopUP').html(html);
+                $('#updateTag' + id).modal('show');
+            },
+            error: function (request, error) {
+                console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+            }
+        });
+    }
+
+    // Affiche la modal delete
+    function showModalDeleteTag(id) {
+        const url = "{{ path('delete_Tag', {'id': 'ID_PLACEHOLDER'}) }}".replace('ID_PLACEHOLDER', id);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (html) {
+                $('.containerPopUP').html(html);
+                $('#DeleteTag' + id).modal('show');
+            },
+            error: function (request, error) {
+                console.error("Request: " + JSON.stringify(request) + ", Error: " + error);
+            }
+        });
+    }
+</script>
+
+
+{% endblock %}
+

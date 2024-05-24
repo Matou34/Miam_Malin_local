@@ -1,0 +1,29 @@
+{# --------------------------------------POPUP DELETE ------------------------------ #}
+{% block body %}
+	{# Pop Up formulaire #}
+	<div class="modal fade" id="DeleteRegion{{ region.id }}"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="DeleteRegionLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header popUP_Create Delete-mode">
+					{# Icon Supprimer #}
+					<i class="fa-solid fa-trash-can fa-3x changeColor mb-1"></i>
+					{# titre Delete #}
+					<h5 class="modal-title" id="cuissonLabel"> DELETE RÉGION</h5>
+					{# Btn close #}
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="main_delete">
+					<p>Suppression de la région
+						<span class='text_color_Delete'>{{ region.reglibelle}}</span>
+					</p>
+				</div>
+
+				<div class='SubmitRecettes'>
+					<a class="m-2 btn  myBoutton affichePopUp" href={{url('Gestion_Unites')}}>Retour</a>
+					<a class="btn myBouttonSubmit_Delete m-2" href={{url('delete_region', {'id': region.id} )}}>Supprimer</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
